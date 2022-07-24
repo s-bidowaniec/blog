@@ -5,10 +5,14 @@ import { Navbar, Container } from 'react-bootstrap';
 
 const NavBar = () => {
   return (
-    <Navbar bg="primary" variant="dark" expand="lg" className="mt-4 mb-4 rounded">
-      <Container>
-        <Navbar.Brand href="/">Blogg.app</Navbar.Brand>
-        <Nav className="my-2">
+    <Container>
+      <Navbar bg="primary" variant="dark" className="rounded">
+        <Navbar.Brand className="me-auto px-2">
+          <Nav.Link as={NavLink} to="/">
+            Blog.app
+          </Nav.Link>
+        </Navbar.Brand>
+        <Nav>
           <Nav.Link as={NavLink} to="/">
             Home
           </Nav.Link>
@@ -16,8 +20,8 @@ const NavBar = () => {
             About
           </Nav.Link>
         </Nav>
-      </Container>
-    </Navbar>
+      </Navbar>
+    </Container>
   );
 };
 
