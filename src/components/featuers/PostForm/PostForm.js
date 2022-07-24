@@ -6,7 +6,6 @@ const PostForm = (props) => {
   const [postTitle, setPostTitle] = useState(props.postTitle);
   const [postAuthor, setPostAuthor] = useState(props.postAuthor);
   const [postDate, setPostDate] = useState(props.postDate);
-  //const date = new Date.parse(postDate);
   const [postDescription, setPostDescription] = useState(props.postDescription);
   const [postText, setPostText] = useState(props.postText);
   const onSubmit = (e) => {
