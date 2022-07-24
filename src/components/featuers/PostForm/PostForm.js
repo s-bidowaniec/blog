@@ -1,30 +1,24 @@
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { addPost } from '../../../redux/postsRedux';
-import { useNavigate } from 'react-router-dom';
 
 const PostForm = (props) => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [postTitle, setPostTitle] = useState('');
-  const [postAuthor, setPostAuthor] = useState('');
-  const [postDate, setPostDate] = useState('');
-  const [postDescription, setPostDescription] = useState('');
-  const [postText, setPostText] = useState('');
+  const [postTitle, setPostTitle] = useState(props.postTitle);
+  const [postAuthor, setPostAuthor] = useState(props.postAuthor);
+  const [postDate, setPostDate] = useState(props.postDate);
+  //const date = new Date.parse(postDate);
+  const [postDescription, setPostDescription] = useState(props.postDescription);
+  const [postText, setPostText] = useState(props.postText);
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(
-      addPost({
-        title: postTitle,
-        shortDescription: postDescription,
-        content: postText,
-        publishedDate: postDate,
-        author: postAuthor
-      })
-    );
-    navigate('/');
+    props.action({
+      title: postTitle,
+      shortDescription: postDescription,
+      content: postText,
+      publishedDate: postDate,
+      author: postAuthor,
+      id: props.postId
+    });
   };
   return (
     <div>
@@ -52,8 +46,8 @@ const PostForm = (props) => {
             <Form.Group controlId="postDate">
               <Form.Label>Date:</Form.Label>
               <Form.Control
-                type="date"
-                placeholder={''}
+                type="text"
+                placeholder={'dd.mm.yyyy'}
                 value={postDate}
                 onChange={(e) => setPostDate(e.target.value)}
               />
@@ -82,7 +76,7 @@ const PostForm = (props) => {
         </Form.Group>
 
         <Button className={'mt-2'} variant="primary" type="submit">
-          {props.type === 'new' ? 'Add post' : 'Update'}
+          {props.actionText}
         </Button>
       </Form>
     </div>
@@ -90,7 +84,21 @@ const PostForm = (props) => {
 };
 
 PostForm.propTypes = {
-  type: PropTypes.string
+  action: PropTypes.func,
+  actionText: PropTypes.string,
+  postTitle: PropTypes.string,
+  postAuthor: PropTypes.string,
+  postDate: PropTypes.string,
+  postDescription: PropTypes.string,
+  postText: PropTypes.string,
+  postId: PropTypes.string
 };
-
+PostForm.defaultProps = {
+  postTitle: '',
+  postAuthor: '',
+  postDate: '',
+  postDescription: '',
+  postText: '',
+  postId: ''
+};
 export default PostForm;

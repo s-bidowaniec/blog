@@ -1,5 +1,5 @@
 import { Col, Container, Row, Stack } from 'react-bootstrap';
-import PostForm from '../../featuers/PostForm/PostForm';
+import AddPostForm from '../../featuers/AddPostForm/AddPostForm';
 
 const PostAdd = () => {
   return (
@@ -9,7 +9,7 @@ const PostAdd = () => {
           <Stack direction="horizontal" gap={3}>
             <h1>Add post</h1>
           </Stack>
-          <PostForm type={'new'} />
+          <AddPostForm />
         </Col>
       </Row>
     </Container>
