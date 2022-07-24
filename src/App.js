@@ -5,10 +5,13 @@ import NotFound from './components/pages/NotFound/NotFound';
 import Post from './components/pages/Post/Post';
 import PostAdd from './components/pages/PostAdd/PostAdd';
 import PostEdit from './components/pages/PostEdit/PostEdit';
+import Header from './components/views/Header/Header';
+import Footer from './components/views/Footer/Footer';
 
 const App = () => {
   return (
     <div>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/post/:id" element={<Post />} />
@@ -17,6 +20,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/*" exact={true} element={<NotFound />} />
       </Routes>
+      <Footer />
     </div>
   );
 };
