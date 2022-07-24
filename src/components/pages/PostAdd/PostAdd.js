@@ -1,5 +1,5 @@
 import { Col, Container, Row, Stack } from 'react-bootstrap';
-import PostForm from '../../common/PostForm/PostForm';
+import PostForm from '../../featuers/PostForm/PostForm';
 
 const PostAdd = () => {
   return (
