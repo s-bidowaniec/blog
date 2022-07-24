@@ -10,7 +10,7 @@ const EditPostForm = (props) => {
 
   const handleSubmit = (post) => {
     dispatch(editPost(post));
-    navigate('/');
+    navigate('/post/' + post.id);
   };
   return (
     <PostForm
