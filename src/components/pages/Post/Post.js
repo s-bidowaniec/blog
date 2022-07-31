@@ -7,6 +7,7 @@ import { Stack, Button, Container, Row, Col, Nav } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { deletePost } from '../../../redux/postsRedux';
 import DelModal from '../../common/DelModal/DelModal';
+import { dateParser } from '../../../utils/utils';
 
 const Post = () => {
   const dispatch = useDispatch();
@@ -38,10 +39,10 @@ const Post = () => {
             <p>
               <strong>Author:</strong> {post.author}
               <br />
-              <strong>Date:</strong> {post.publishedDate}
+              <strong>Date:</strong> {dateParser(post.publishedDate)}
               <br />
             </p>
-            <p>{post.content}</p>
+            <p dangerouslySetInnerHTML={{ __html: post.content }} />
           </Col>
         </Row>
       </Container>

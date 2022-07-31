@@ -28,7 +28,7 @@ const EditPostForm = (props) => {
 EditPostForm.propTypes = {
   title: PropTypes.string,
   author: PropTypes.string,
-  publishedDate: PropTypes.string,
+  publishedDate: PropTypes.instanceOf(Date),
   shortDescription: PropTypes.string,
   content: PropTypes.string,
   id: PropTypes.string
