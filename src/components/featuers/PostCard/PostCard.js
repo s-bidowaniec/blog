@@ -13,6 +13,8 @@ const PostCard = (props) => {
           <br />
           <strong>Date:</strong> {dateParser(props.publishedDate)}
           <br />
+          <strong>Category:</strong> {props.category}
+          <br />
           {props.shortDescription}
         </Card.Text>
         <Button variant="primary">
@@ -30,7 +32,8 @@ PostCard.propTypes = {
   shortDescription: PropTypes.string,
   author: PropTypes.string,
   publishedDate: PropTypes.instanceOf(Date),
-  id: PropTypes.string
+  id: PropTypes.string,
+  category: PropTypes.string
 };
 
 export default PostCard;

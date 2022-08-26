@@ -22,6 +22,7 @@ const EditPostForm = (props) => {
       postDescription={props.shortDescription}
       postText={props.content}
       postId={props.id}
+      postCategory={props.category}
     />
   );
 };
@@ -31,6 +32,7 @@ EditPostForm.propTypes = {
   publishedDate: PropTypes.instanceOf(Date),
   shortDescription: PropTypes.string,
   content: PropTypes.string,
-  id: PropTypes.string
+  id: PropTypes.string,
+  category: PropTypes.string
 };
 export default EditPostForm;

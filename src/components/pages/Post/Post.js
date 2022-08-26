@@ -41,6 +41,8 @@ const Post = () => {
               <br />
               <strong>Date:</strong> {dateParser(post.publishedDate)}
               <br />
+              <strong>Category:</strong> {post.category}
+              <br />
             </p>
             <p dangerouslySetInnerHTML={{ __html: post.content }} />
           </Col>

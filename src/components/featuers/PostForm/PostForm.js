@@ -4,6 +4,8 @@ import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import DatePicker from 'react-datepicker';
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { getAllCategories } from '../../../redux/categoriesRedux';
 import 'react-quill/dist/quill.snow.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -13,13 +15,16 @@ const PostForm = (props) => {
   const [postDate, setPostDate] = useState(props.postDate);
   const [postDescription, setPostDescription] = useState(props.postDescription);
   const [postText, setPostText] = useState(props.postText);
+  const [postCategory, setPostCategory] = useState(props.postCategory);
   const [contentError, setContentError] = useState(false);
   const [dateError, setDateError] = useState(false);
+  const categories = useSelector((state) => getAllCategories(state));
   const {
     register,
     handleSubmit: validate,
     formState: { errors }
   } = useForm();
+
   const handleSubmit = () => {
     setContentError(!postText);
     setDateError(!postDate);
@@ -30,6 +35,7 @@ const PostForm = (props) => {
         content: postText,
         publishedDate: postDate,
         author: postAuthor,
+        category: postCategory,
         id: props.postId
       });
     }
@@ -65,6 +71,18 @@ const PostForm = (props) => {
               {errors.author && (
                 <small className="d-block form-text text-danger mt-2">This field is required</small>
               )}
+            </Form.Group>
+            <p>{postCategory}</p>
+            <Form.Group controlId="postCategory">
+              <Form.Label>Category:</Form.Label>
+              <Form.Control
+                as={'select'}
+                value={postCategory}
+                onChange={(e) => setPostCategory(e.target.value)}>
+                {categories.map((cat) => {
+                  return <option key={cat.id}>{cat.name}</option>;
+                })}
+              </Form.Control>
             </Form.Group>
             <Form.Group controlId="postDate">
               <Form.Label>Date:</Form.Label>
@@ -117,14 +135,16 @@ PostForm.propTypes = {
   postDate: PropTypes.instanceOf(Date),
   postDescription: PropTypes.string,
   postText: PropTypes.string,
-  postId: PropTypes.string
+  postId: PropTypes.string,
+  postCategory: PropTypes.string
 };
 PostForm.defaultProps = {
   postTitle: '',
   postAuthor: '',
-  postDate: '',
+  postDate: Date.now(),
   postDescription: '',
   postText: '',
-  postId: ''
+  postId: '',
+  postCategory: 'News'
 };
 export default PostForm;
