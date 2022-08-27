@@ -141,7 +141,7 @@ PostForm.propTypes = {
 PostForm.defaultProps = {
   postTitle: '',
   postAuthor: '',
-  postDate: Date.now(),
+  postDate: new Date(Date.now()),
   postDescription: '',
   postText: '',
   postId: '',
